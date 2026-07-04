@@ -10,17 +10,14 @@ function App() {
     setCurrentWord({ en: "Loading...", tr: "Yükleniyor..." });
 
     try {
-      // 1. API: Rastgele İngilizce kelimeyi çekiyoruz
       const wordResponse = await fetch('https://random-word-api.herokuapp.com/word?number=1');
       const wordData = await wordResponse.json();
       const randomEnglishWord = wordData[0];
 
-      // 2. API: Çekilen kelimeyi Türkçeye çeviriyoruz
       const translationResponse = await fetch(`https://api.mymemory.translated.net/get?q=${randomEnglishWord}&langpair=en|tr`);
       const translationData = await translationResponse.json();
       const turkishTranslation = translationData.responseData.translatedText;
 
-      // Ekranda gösterilecek state'i güncelliyoruz
       setCurrentWord({ 
         en: randomEnglishWord, 
         tr: turkishTranslation 
@@ -32,7 +29,6 @@ function App() {
     }
   };
 
-  // Sayfa yüklendiğinde API'den ilk kelimeyi çekmesi için useEffect kullanıyoruz
   useEffect(() => {
     fetchNewWord();
   }, []);
