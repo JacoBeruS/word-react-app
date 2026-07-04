@@ -69,7 +69,6 @@ function App() {
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
-        width: '420px',
       }}>
         Yeni Kelime Çek
       </button>
